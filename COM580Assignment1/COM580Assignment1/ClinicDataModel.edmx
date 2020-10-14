@@ -1,0 +1,634 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ClinicDataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ClinicDataModelStoreContainer">
+    <EntitySet Name="Parents" EntityType="ClinicDataModel.Store.Parents" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Children" EntityType="ClinicDataModel.Store.Children" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Clinics" EntityType="ClinicDataModel.Store.Clinics" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Consultants" EntityType="ClinicDataModel.Store.Consultants" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Appointments" EntityType="ClinicDataModel.Store.Appointments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Prescriptions" EntityType="ClinicDataModel.Store.Prescriptions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Medications" EntityType="ClinicDataModel.Store.Medications" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Invoices" EntityType="ClinicDataModel.Store.Invoices" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="ParentChild" Association="ClinicDataModel.Store.ParentChild">
+      <End Role="Parent" EntitySet="Parents" />
+      <End Role="Child" EntitySet="Children" />
+    </AssociationSet>
+    <AssociationSet Name="ClinicConsultant" Association="ClinicDataModel.Store.ClinicConsultant">
+      <End Role="Clinic" EntitySet="Clinics" />
+      <End Role="Consultant" EntitySet="Consultants" />
+    </AssociationSet>
+    <AssociationSet Name="ClinicParent" Association="ClinicDataModel.Store.ClinicParent">
+      <End Role="Clinic" EntitySet="Clinics" />
+      <End Role="Parent" EntitySet="Parents" />
+    </AssociationSet>
+    <AssociationSet Name="ChildAppointment" Association="ClinicDataModel.Store.ChildAppointment">
+      <End Role="Child" EntitySet="Children" />
+      <End Role="Appointment" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="ConsultantAppointment" Association="ClinicDataModel.Store.ConsultantAppointment">
+      <End Role="Consultant" EntitySet="Consultants" />
+      <End Role="Appointment" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="AppointmentPrescription" Association="ClinicDataModel.Store.AppointmentPrescription">
+      <End Role="Appointment" EntitySet="Appointments" />
+      <End Role="Prescription" EntitySet="Prescriptions" />
+    </AssociationSet>
+    <AssociationSet Name="PrescriptionMedication" Association="ClinicDataModel.Store.PrescriptionMedication">
+      <End Role="Prescription" EntitySet="Prescriptions" />
+      <End Role="Medication" EntitySet="Medications" />
+    </AssociationSet>
+    <AssociationSet Name="InvoicePrescription" Association="ClinicDataModel.Store.InvoicePrescription">
+      <End Role="Invoice" EntitySet="Invoices" />
+      <End Role="Prescription" EntitySet="Prescriptions" />
+    </AssociationSet>
+    <AssociationSet Name="InvoiceAppointment" Association="ClinicDataModel.Store.InvoiceAppointment">
+      <End Role="Invoice" EntitySet="Invoices" />
+      <End Role="Appointment" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="ParentInvoice" Association="ClinicDataModel.Store.ParentInvoice">
+      <End Role="Parent" EntitySet="Parents" />
+      <End Role="Invoice" EntitySet="Invoices" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Parents">
+    <Key>
+      <PropertyRef Name="ParentId" />
+    </Key>
+    <Property Name="ParentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClinicClinicId" Type="int" Nullable="false" />
+    <Property Name="FName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Children">
+    <Key>
+      <PropertyRef Name="ChildId" />
+    </Key>
+    <Property Name="ChildId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ParentParentId" Type="int" Nullable="false" />
+    <Property Name="FName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DoB" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Gender" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Clinics">
+    <Key>
+      <PropertyRef Name="ClinicId" />
+    </Key>
+    <Property Name="ClinicId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Consultants">
+    <Key>
+      <PropertyRef Name="ConsultantId" />
+    </Key>
+    <Property Name="ConsultantId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClinicClinicId" Type="int" Nullable="false" />
+    <Property Name="FName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Appointments">
+    <Key>
+      <PropertyRef Name="AppointmentId" />
+    </Key>
+    <Property Name="AppointmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ChildChildId" Type="int" Nullable="false" />
+    <Property Name="ConsultantConsultantId" Type="int" Nullable="false" />
+    <Property Name="InvoiceInvoiceId" Type="int" Nullable="false" />
+    <Property Name="Date" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Prescription_PrescriptionId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Prescriptions">
+    <Key>
+      <PropertyRef Name="PrescriptionId" />
+    </Key>
+    <Property Name="PrescriptionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InvoiceInvoiceId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Medications">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PrescriptionPrescriptionId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Strength" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Dose" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Invoices">
+    <Key>
+      <PropertyRef Name="InvoiceId" />
+    </Key>
+    <Property Name="InvoiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ParentParentId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="ParentChild">
+    <End Role="Parent" Type="ClinicDataModel.Store.Parents" Multiplicity="1" />
+    <End Role="Child" Type="ClinicDataModel.Store.Children" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parent">
+        <PropertyRef Name="ParentId" />
+      </Principal>
+      <Dependent Role="Child">
+        <PropertyRef Name="ParentParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClinicConsultant">
+    <End Role="Clinic" Type="ClinicDataModel.Store.Clinics" Multiplicity="1" />
+    <End Role="Consultant" Type="ClinicDataModel.Store.Consultants" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clinic">
+        <PropertyRef Name="ClinicId" />
+      </Principal>
+      <Dependent Role="Consultant">
+        <PropertyRef Name="ClinicClinicId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClinicParent">
+    <End Role="Clinic" Type="ClinicDataModel.Store.Clinics" Multiplicity="1" />
+    <End Role="Parent" Type="ClinicDataModel.Store.Parents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clinic">
+        <PropertyRef Name="ClinicId" />
+      </Principal>
+      <Dependent Role="Parent">
+        <PropertyRef Name="ClinicClinicId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ChildAppointment">
+    <End Role="Child" Type="ClinicDataModel.Store.Children" Multiplicity="1" />
+    <End Role="Appointment" Type="ClinicDataModel.Store.Appointments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Child">
+        <PropertyRef Name="ChildId" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="ChildChildId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ConsultantAppointment">
+    <End Role="Consultant" Type="ClinicDataModel.Store.Consultants" Multiplicity="1" />
+    <End Role="Appointment" Type="ClinicDataModel.Store.Appointments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Consultant">
+        <PropertyRef Name="ConsultantId" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="ConsultantConsultantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AppointmentPrescription">
+    <End Role="Appointment" Type="ClinicDataModel.Store.Appointments" Multiplicity="*" />
+    <End Role="Prescription" Type="ClinicDataModel.Store.Prescriptions" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Prescription">
+        <PropertyRef Name="PrescriptionId" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="Prescription_PrescriptionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PrescriptionMedication">
+    <End Role="Prescription" Type="ClinicDataModel.Store.Prescriptions" Multiplicity="1" />
+    <End Role="Medication" Type="ClinicDataModel.Store.Medications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prescription">
+        <PropertyRef Name="PrescriptionId" />
+      </Principal>
+      <Dependent Role="Medication">
+        <PropertyRef Name="PrescriptionPrescriptionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="InvoicePrescription">
+    <End Role="Invoice" Type="ClinicDataModel.Store.Invoices" Multiplicity="1" />
+    <End Role="Prescription" Type="ClinicDataModel.Store.Prescriptions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="InvoiceId" />
+      </Principal>
+      <Dependent Role="Prescription">
+        <PropertyRef Name="InvoiceInvoiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="InvoiceAppointment">
+    <End Role="Invoice" Type="ClinicDataModel.Store.Invoices" Multiplicity="1" />
+    <End Role="Appointment" Type="ClinicDataModel.Store.Appointments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="InvoiceId" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="InvoiceInvoiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ParentInvoice">
+    <End Role="Parent" Type="ClinicDataModel.Store.Parents" Multiplicity="1" />
+    <End Role="Invoice" Type="ClinicDataModel.Store.Invoices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parent">
+        <PropertyRef Name="ParentId" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="ParentParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ClinicDataModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ClinicDataModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Parents" EntityType="ClinicDataModel.Parent" />
+          <EntitySet Name="Children" EntityType="ClinicDataModel.Child" />
+          <EntitySet Name="Clinics" EntityType="ClinicDataModel.Clinic" />
+          <EntitySet Name="Consultants" EntityType="ClinicDataModel.Consultant" />
+          <AssociationSet Name="ParentChild" Association="ClinicDataModel.ParentChild">
+            <End Role="Parent" EntitySet="Parents" />
+            <End Role="Child" EntitySet="Children" />
+          </AssociationSet>
+          <AssociationSet Name="ClinicConsultant" Association="ClinicDataModel.ClinicConsultant">
+            <End Role="Clinic" EntitySet="Clinics" />
+            <End Role="Consultant" EntitySet="Consultants" />
+          </AssociationSet>
+          <AssociationSet Name="ClinicParent" Association="ClinicDataModel.ClinicParent">
+            <End Role="Clinic" EntitySet="Clinics" />
+            <End Role="Parent" EntitySet="Parents" />
+          </AssociationSet>
+          <EntitySet Name="Appointments" EntityType="ClinicDataModel.Appointment" />
+          <AssociationSet Name="ChildAppointment" Association="ClinicDataModel.ChildAppointment">
+            <End Role="Child" EntitySet="Children" />
+            <End Role="Appointment" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="ConsultantAppointment" Association="ClinicDataModel.ConsultantAppointment">
+            <End Role="Consultant" EntitySet="Consultants" />
+            <End Role="Appointment" EntitySet="Appointments" />
+          </AssociationSet>
+          <EntitySet Name="Prescriptions" EntityType="ClinicDataModel.Prescription" />
+          <AssociationSet Name="AppointmentPrescription" Association="ClinicDataModel.AppointmentPrescription">
+            <End Role="Appointment" EntitySet="Appointments" />
+            <End Role="Prescription" EntitySet="Prescriptions" />
+          </AssociationSet>
+          <EntitySet Name="Medications" EntityType="ClinicDataModel.Medication" />
+          <AssociationSet Name="PrescriptionMedication" Association="ClinicDataModel.PrescriptionMedication">
+            <End EntitySet="Prescriptions" Role="Prescription" />
+            <End EntitySet="Medications" Role="Medication" />
+          </AssociationSet>
+          <EntitySet Name="Invoices" EntityType="ClinicDataModel.Invoice" />
+          <AssociationSet Name="InvoicePrescription" Association="ClinicDataModel.InvoicePrescription">
+            <End Role="Invoice" EntitySet="Invoices" />
+            <End Role="Prescription" EntitySet="Prescriptions" />
+          </AssociationSet>
+          <AssociationSet Name="InvoiceAppointment" Association="ClinicDataModel.InvoiceAppointment">
+            <End Role="Invoice" EntitySet="Invoices" />
+            <End Role="Appointment" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="ParentInvoice" Association="ClinicDataModel.ParentInvoice">
+            <End Role="Parent" EntitySet="Parents" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Parent">
+          <Key>
+            <PropertyRef Name="ParentId" />
+          </Key>
+          <Property Name="ParentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Children" Relationship="ClinicDataModel.ParentChild" FromRole="Parent" ToRole="Child" />
+          <NavigationProperty Name="Clinic" Relationship="ClinicDataModel.ClinicParent" FromRole="Parent" ToRole="Clinic" />
+          <Property Name="ClinicClinicId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Invoices" Relationship="ClinicDataModel.ParentInvoice" FromRole="Parent" ToRole="Invoice" />
+          <Property Name="FName" Type="String" Nullable="false" />
+          <Property Name="SName" Type="String" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Child">
+          <Key>
+            <PropertyRef Name="ChildId" />
+          </Key>
+          <Property Name="ChildId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Parent" Relationship="ClinicDataModel.ParentChild" FromRole="Child" ToRole="Parent" />
+          <Property Name="ParentParentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Appointments" Relationship="ClinicDataModel.ChildAppointment" FromRole="Child" ToRole="Appointment" />
+          <Property Name="FName" Type="String" Nullable="false" />
+          <Property Name="SName" Type="String" Nullable="false" />
+          <Property Name="DoB" Type="String" Nullable="false" />
+          <Property Name="Gender" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clinic">
+          <Key>
+            <PropertyRef Name="ClinicId" />
+          </Key>
+          <Property Name="ClinicId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Consultants" Relationship="ClinicDataModel.ClinicConsultant" FromRole="Clinic" ToRole="Consultant" />
+          <NavigationProperty Name="Parents" Relationship="ClinicDataModel.ClinicParent" FromRole="Clinic" ToRole="Parent" />
+          <Property Name="Address" Type="String" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Consultant">
+          <Key>
+            <PropertyRef Name="ConsultantId" />
+          </Key>
+          <Property Name="ConsultantId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Clinic" Relationship="ClinicDataModel.ClinicConsultant" FromRole="Consultant" ToRole="Clinic" />
+          <Property Name="ClinicClinicId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Appointments" Relationship="ClinicDataModel.ConsultantAppointment" FromRole="Consultant" ToRole="Appointment" />
+          <Property Name="FName" Type="String" Nullable="false" />
+          <Property Name="SName" Type="String" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="ParentChild">
+          <End Type="ClinicDataModel.Parent" Role="Parent" Multiplicity="1" />
+          <End Type="ClinicDataModel.Child" Role="Child" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parent">
+              <PropertyRef Name="ParentId" />
+            </Principal>
+            <Dependent Role="Child">
+              <PropertyRef Name="ParentParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ClinicConsultant">
+          <End Type="ClinicDataModel.Clinic" Role="Clinic" Multiplicity="1" />
+          <End Type="ClinicDataModel.Consultant" Role="Consultant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clinic">
+              <PropertyRef Name="ClinicId" />
+            </Principal>
+            <Dependent Role="Consultant">
+              <PropertyRef Name="ClinicClinicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ClinicParent">
+          <End Type="ClinicDataModel.Clinic" Role="Clinic" Multiplicity="1" />
+          <End Type="ClinicDataModel.Parent" Role="Parent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clinic">
+              <PropertyRef Name="ClinicId" />
+            </Principal>
+            <Dependent Role="Parent">
+              <PropertyRef Name="ClinicClinicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Appointment">
+          <Key>
+            <PropertyRef Name="AppointmentId" />
+          </Key>
+          <Property Name="AppointmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Child" Relationship="ClinicDataModel.ChildAppointment" FromRole="Appointment" ToRole="Child" />
+          <Property Name="ChildChildId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Consultant" Relationship="ClinicDataModel.ConsultantAppointment" FromRole="Appointment" ToRole="Consultant" />
+          <Property Name="ConsultantConsultantId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Prescription" Relationship="ClinicDataModel.AppointmentPrescription" FromRole="Appointment" ToRole="Prescription" />
+          <NavigationProperty Name="Invoice" Relationship="ClinicDataModel.InvoiceAppointment" FromRole="Appointment" ToRole="Invoice" />
+          <Property Name="InvoiceInvoiceId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="ChildAppointment">
+          <End Type="ClinicDataModel.Child" Role="Child" Multiplicity="1" />
+          <End Type="ClinicDataModel.Appointment" Role="Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Child">
+              <PropertyRef Name="ChildId" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="ChildChildId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ConsultantAppointment">
+          <End Type="ClinicDataModel.Consultant" Role="Consultant" Multiplicity="1" />
+          <End Type="ClinicDataModel.Appointment" Role="Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Consultant">
+              <PropertyRef Name="ConsultantId" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="ConsultantConsultantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Prescription">
+          <Key>
+            <PropertyRef Name="PrescriptionId" />
+          </Key>
+          <Property Name="PrescriptionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Appointment" Relationship="ClinicDataModel.AppointmentPrescription" FromRole="Prescription" ToRole="Appointment" />
+          <NavigationProperty Name="Medications" Relationship="ClinicDataModel.PrescriptionMedication" FromRole="Prescription" ToRole="Medication" />
+          <NavigationProperty Name="Invoice" Relationship="ClinicDataModel.InvoicePrescription" FromRole="Prescription" ToRole="Invoice" />
+          <Property Name="InvoiceInvoiceId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="AppointmentPrescription">
+          <End Type="ClinicDataModel.Appointment" Role="Appointment" Multiplicity="1" />
+          <End Type="ClinicDataModel.Prescription" Role="Prescription" Multiplicity="1" />
+        </Association>
+        <EntityType Name="Medication">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Prescription" Relationship="ClinicDataModel.PrescriptionMedication" FromRole="Medication" ToRole="Prescription" />
+          <Property Name="PrescriptionPrescriptionId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Strength" Type="String" Nullable="false" />
+          <Property Name="Dose" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="PrescriptionMedication">
+          <End Type="ClinicDataModel.Prescription" Multiplicity="1" Role="Prescription" />
+          <End Type="ClinicDataModel.Medication" Multiplicity="*" Role="Medication" />
+          <ReferentialConstraint>
+            <Principal Role="Prescription">
+              <PropertyRef Name="PrescriptionId" />
+            </Principal>
+            <Dependent Role="Medication">
+              <PropertyRef Name="PrescriptionPrescriptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="InvoiceId" />
+          </Key>
+          <Property Name="InvoiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Prescriptions" Relationship="ClinicDataModel.InvoicePrescription" FromRole="Invoice" ToRole="Prescription" />
+          <NavigationProperty Name="Appointments" Relationship="ClinicDataModel.InvoiceAppointment" FromRole="Invoice" ToRole="Appointment" />
+          <NavigationProperty Name="Parent" Relationship="ClinicDataModel.ParentInvoice" FromRole="Invoice" ToRole="Parent" />
+          <Property Name="ParentParentId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="InvoicePrescription">
+          <End Type="ClinicDataModel.Invoice" Role="Invoice" Multiplicity="1" />
+          <End Type="ClinicDataModel.Prescription" Role="Prescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="InvoiceId" />
+            </Principal>
+            <Dependent Role="Prescription">
+              <PropertyRef Name="InvoiceInvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="InvoiceAppointment">
+          <End Type="ClinicDataModel.Invoice" Role="Invoice" Multiplicity="1" />
+          <End Type="ClinicDataModel.Appointment" Role="Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="InvoiceId" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="InvoiceInvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ParentInvoice">
+          <End Type="ClinicDataModel.Parent" Role="Parent" Multiplicity="1" />
+          <End Type="ClinicDataModel.Invoice" Role="Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parent">
+              <PropertyRef Name="ParentId" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="ParentParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ClinicDataModelStoreContainer" CdmEntityContainer="ClinicDataModelContainer">
+    <EntitySetMapping Name="Parents">
+      <EntityTypeMapping TypeName="IsTypeOf(ClinicDataModel.Parent)">
+        <MappingFragment StoreEntitySet="Parents">
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="ClinicClinicId" ColumnName="ClinicClinicId" />
+          <ScalarProperty Name="FName" ColumnName="FName" />
+          <ScalarProperty Name="SName" ColumnName="SName" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Children">
+      <EntityTypeMapping TypeName="IsTypeOf(ClinicDataModel.Child)">
+        <MappingFragment StoreEntitySet="Children">
+          <ScalarProperty Name="ChildId" ColumnName="ChildId" />
+          <ScalarProperty Name="ParentParentId" ColumnName="ParentParentId" />
+          <ScalarProperty Name="FName" ColumnName="FName" />
+          <ScalarProperty Name="SName" ColumnName="SName" />
+          <ScalarProperty Name="DoB" ColumnName="DoB" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clinics">
+      <EntityTypeMapping TypeName="IsTypeOf(ClinicDataModel.Clinic)">
+        <MappingFragment StoreEntitySet="Clinics">
+          <ScalarProperty Name="ClinicId" ColumnName="ClinicId" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Consultants">
+      <EntityTypeMapping TypeName="IsTypeOf(ClinicDataModel.Consultant)">
+        <MappingFragment StoreEntitySet="Consultants">
+          <ScalarProperty Name="ConsultantId" ColumnName="ConsultantId" />
+          <ScalarProperty Name="ClinicClinicId" ColumnName="ClinicClinicId" />
+          <ScalarProperty Name="FName" ColumnName="FName" />
+          <ScalarProperty Name="SName" ColumnName="SName" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Appointments">
+      <EntityTypeMapping TypeName="IsTypeOf(ClinicDataModel.Appointment)">
+        <MappingFragment StoreEntitySet="Appointments">
+          <ScalarProperty Name="AppointmentId" ColumnName="AppointmentId" />
+          <ScalarProperty Name="ChildChildId" ColumnName="ChildChildId" />
+          <ScalarProperty Name="ConsultantConsultantId" ColumnName="ConsultantConsultantId" />
+          <ScalarProperty Name="InvoiceInvoiceId" ColumnName="InvoiceInvoiceId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prescriptions">
+      <EntityTypeMapping TypeName="IsTypeOf(ClinicDataModel.Prescription)">
+        <MappingFragment StoreEntitySet="Prescriptions">
+          <ScalarProperty Name="PrescriptionId" ColumnName="PrescriptionId" />
+          <ScalarProperty Name="InvoiceInvoiceId" ColumnName="InvoiceInvoiceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Medications">
+      <EntityTypeMapping TypeName="IsTypeOf(ClinicDataModel.Medication)">
+        <MappingFragment StoreEntitySet="Medications">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PrescriptionPrescriptionId" ColumnName="PrescriptionPrescriptionId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Strength" ColumnName="Strength" />
+          <ScalarProperty Name="Dose" ColumnName="Dose" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invoices">
+      <EntityTypeMapping TypeName="IsTypeOf(ClinicDataModel.Invoice)">
+        <MappingFragment StoreEntitySet="Invoices">
+          <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+          <ScalarProperty Name="ParentParentId" ColumnName="ParentParentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AppointmentPrescription" TypeName="ClinicDataModel.AppointmentPrescription" StoreEntitySet="Appointments">
+      <EndProperty Name="Prescription">
+        <ScalarProperty Name="PrescriptionId" ColumnName="Prescription_PrescriptionId" />
+      </EndProperty>
+      <EndProperty Name="Appointment">
+        <ScalarProperty Name="AppointmentId" ColumnName="AppointmentId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
