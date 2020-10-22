@@ -18,17 +18,20 @@ namespace COM580Assignment1
         public Child()
         {
             this.Appointments = new HashSet<Appointment>();
+            this.Medications = new HashSet<Medication>();
         }
     
         public int ChildId { get; set; }
-        public int ParentParentId { get; set; }
         public string FName { get; set; }
         public string SName { get; set; }
         public string DoB { get; set; }
-        public string Gender { get; set; }
+        public string Sex { get; set; }
+        public int ParentPrentId { get; set; }
     
         public virtual Parent Parent { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Appointment> Appointments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Medication> Medications { get; set; }
     }
 }

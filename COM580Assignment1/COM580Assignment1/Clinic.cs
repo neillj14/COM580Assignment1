@@ -18,16 +18,13 @@ namespace COM580Assignment1
         public Clinic()
         {
             this.Consultants = new HashSet<Consultant>();
-            this.Parents = new HashSet<Parent>();
         }
     
         public int ClinicId { get; set; }
         public string Address { get; set; }
-        public string Phone { get; set; }
+        public string ContactNum { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Consultant> Consultants { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Parent> Parents { get; set; }
     }
 }

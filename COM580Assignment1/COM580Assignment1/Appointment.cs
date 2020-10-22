@@ -14,15 +14,21 @@ namespace COM580Assignment1
     
     public partial class Appointment
     {
-        public int AppointmentId { get; set; }
-        public int ChildChildId { get; set; }
-        public int ConsultantConsultantId { get; set; }
-        public int InvoiceInvoiceId { get; set; }
-        public string Date { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Appointment()
+        {
+            this.Medications = new HashSet<Medication>();
+        }
     
-        public virtual Child Child { get; set; }
+        public int AppointmentId { get; set; }
+        public System.DateTime Date { get; set; }
+        public int ConsultantConsultantId { get; set; }
+        public int ChildChildId { get; set; }
+        public string Reason { get; set; }
+    
         public virtual Consultant Consultant { get; set; }
-        public virtual Prescription Prescription { get; set; }
-        public virtual Invoice Invoice { get; set; }
+        public virtual Child Child { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Medication> Medications { get; set; }
     }
 }

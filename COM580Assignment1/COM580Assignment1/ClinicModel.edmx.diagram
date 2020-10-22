@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7af33d7a879745dfa06b51330fe5b974" Name="Diagram1" ZoomLevel="64" >
+        <EntityTypeShape EntityType="ClinicModel.Parent" Width="1.5" PointX="0.75" PointY="5.125" />
+        <EntityTypeShape EntityType="ClinicModel.Child" Width="1.5" PointX="5.25" PointY="5.125" />
+        <EntityTypeShape EntityType="ClinicModel.Clinic" Width="1.5" PointX="0.75" PointY="1.5" />
+        <EntityTypeShape EntityType="ClinicModel.Consultant" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="ClinicModel.ParentChild" />
+        <AssociationConnector Association="ClinicModel.ClinicConsultant" />
+        <EntityTypeShape EntityType="ClinicModel.Appointment" Width="1.5" PointX="5.25" PointY="1" />
+        <AssociationConnector Association="ClinicModel.ConsultantAppointment" />
+        <AssociationConnector Association="ClinicModel.ChildAppointment" />
+        <EntityTypeShape EntityType="ClinicModel.Medication" Width="1.5" PointX="7.5" PointY="1" />
+        <AssociationConnector Association="ClinicModel.AppointmentMedication" />
+        <AssociationConnector Association="ClinicModel.ChildMedication" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

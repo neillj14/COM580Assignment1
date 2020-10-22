@@ -13,10 +13,10 @@ namespace COM580Assignment1
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ClinicDataModelContainer : DbContext
+    public partial class ClinicModelContainer : DbContext
     {
-        public ClinicDataModelContainer()
-            : base("name=ClinicDataModelContainer")
+        public ClinicModelContainer()
+            : base("name=ClinicModelContainer")
         {
         }
     
@@ -30,8 +30,6 @@ namespace COM580Assignment1
         public virtual DbSet<Clinic> Clinics { get; set; }
         public virtual DbSet<Consultant> Consultants { get; set; }
         public virtual DbSet<Appointment> Appointments { get; set; }
-        public virtual DbSet<Prescription> Prescriptions { get; set; }
         public virtual DbSet<Medication> Medications { get; set; }
-        public virtual DbSet<Invoice> Invoices { get; set; }
     }
 }

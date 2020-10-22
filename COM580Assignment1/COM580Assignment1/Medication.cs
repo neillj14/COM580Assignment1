@@ -14,12 +14,15 @@ namespace COM580Assignment1
     
     public partial class Medication
     {
-        public int Id { get; set; }
-        public int PrescriptionPrescriptionId { get; set; }
+        public int MedicationId { get; set; }
+        public int AppointmentAppointmentId { get; set; }
         public string Name { get; set; }
+        public string Dosage { get; set; }
         public string Strength { get; set; }
-        public string Dose { get; set; }
+        public int ChildChildId { get; set; }
+        public decimal Cost { get; set; }
     
-        public virtual Prescription Prescription { get; set; }
+        public virtual Appointment Appointment { get; set; }
+        public virtual Child Child { get; set; }
     }
 }

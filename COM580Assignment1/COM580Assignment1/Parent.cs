@@ -18,20 +18,16 @@ namespace COM580Assignment1
         public Parent()
         {
             this.Children = new HashSet<Child>();
-            this.Invoices = new HashSet<Invoice>();
         }
     
-        public int ParentId { get; set; }
-        public int ClinicClinicId { get; set; }
+        public int PrentId { get; set; }
         public string FName { get; set; }
         public string SName { get; set; }
-        public string Phone { get; set; }
+        public string ContactNum { get; set; }
         public string Email { get; set; }
+        public string Address { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Child> Children { get; set; }
-        public virtual Clinic Clinic { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Invoice> Invoices { get; set; }
     }
 }
