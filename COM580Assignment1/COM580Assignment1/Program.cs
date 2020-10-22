@@ -1,4 +1,10 @@
-﻿using System;
+/*
+Author: Jamie Neill
+Description: Main class for COM580 Assignment 1
+Date: 22/10/2020
+Copyright: Jamie Neill
+*/
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
