@@ -163,8 +163,9 @@ namespace COM580Assignment1
                                                  select child;
                 IEnumerable<Appointment> Appoints = from apointments in db.Appointments
                                                     where apointments.ChildChildId == Id
+                                                    orderby apointments.Date ascending
                                                     select apointments;
-                Appoints = Appoints.OrderByDescending(a => a.Date.Year).ThenByDescending(a => a.Date.Month).ToList<Appointment>();
+                Appoints = Appoints.OrderBy(a => a.Date.Year).ThenBy(a => a.Date.Month).ToList<Appointment>();
                 foreach (var child in chosenChild)
                 {
                     Appoints = child.Appointments;
